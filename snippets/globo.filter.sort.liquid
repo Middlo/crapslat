@@ -29,7 +29,7 @@
       {% assign relevance = 'relevance,' %}
       {% endraw %}{% endif %}{% raw %}
       
-      {% assign available_sort  = relevance | append: 'stock-descending,best-selling,title-ascending,title-descending,price-ascending,price-descending,created-descending,created-ascending,' | append: sort_by | append: ',{% endraw %}{{collection.default_sort_by}}{% raw %}'  | split: "," %}
+      {% assign available_sort  = relevance | append: 'stock-descending,relevance,best-selling,title-ascending,title-descending,price-ascending,price-descending,created-descending,created-ascending,' | append: sort_by | append: ',{% endraw %}{{collection.default_sort_by}}{% raw %}'  | split: "," %}
       {% capture sort_by_text %}
         {% case sort_by %}
         {% when 'best-selling' %}

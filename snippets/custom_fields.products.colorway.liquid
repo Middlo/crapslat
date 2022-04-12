@@ -1,0 +1,8 @@
+{% if product.metafields.custom_fields["colorway"] != blank %}
+  <div class="custom-field custom-field__colorway custom-field__type--text">
+    <h3 class="custom-field--title">COLORWAY</h3>
+    <div class="custom-field--value">
+      {{ product.metafields.custom_fields["colorway"] }}
+    </div>
+  </div>
+{% endif %}

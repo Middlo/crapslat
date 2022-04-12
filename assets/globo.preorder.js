@@ -16063,7 +16063,7 @@
                         productPositionLimitMessage: ".product-form__controls-group, .qty.product-page-qty, .product-form--atc, .product__atc, .quantity-controls, .product-detail__quantity-row, .proQuantity, .shopify-variation-add-to-cart > .quantity, .quantity-product > .quantity, .payment-and-quantity.payment-and-quantity--with-quantity .qty-adjuster__inner, .qtydiv > .qtybox , .product-form__info-content > div[data-fsa-container-product], .quantity-selector--product",
                         productPositionPaymentOption: ".product__atc",
                         productPositionBis: ".product-form.content-divider, .product-section.padless-bottom.border-bottom",
-                        collectionProductForms: '.gPreorderCollectionForm, .spf-product__form, form[action*="/cart/add"], .shopify-product-form',
+                        collectionProductForms: '.gPreorderCollectionForm, .spf-product__form, form[action*="/cart/add"]',
                         collectionVariantActivator: null,
                         collectionVariantSelector: 'select[name="id"], input[name="id"], .spf-product__variants',
                         collectionQuantitySelector: '[name="qty"], [name="quantity"]',
@@ -16248,7 +16248,6 @@
                             }
                         }
                     })),
-                    console.log(1212121),
                     t.initCollection(),
                     window.addEventListener("globoFilterRenderCompleted", (function() {
                         t.initCollection()
@@ -16758,7 +16757,6 @@
                 } catch (t) {}
             },
             initCollection: (Nn = qn(i.a.mark((function t() {
-              	console.log('initCollection')
                 var e, n, r;
                 return i.a.wrap((function(t) {
                     for (; ; )
@@ -16924,13 +16922,11 @@
             },
             initCollectionForm: function() {
                 var t = this;
-              	console.log(a()(t.settings.selectors.collectionProductForms))
-                a()(t.settings.selectors.collectionProductForms).not("." + t.settings.classes.preorderLoadedForm).not(":hidden").each((function() {
+                a()(t.settings.selectors.collectionProductForms).not(t.settings.selectors.quickViewProductForm).not("." + t.settings.classes.preorderLoadedForm).not(":hidden").each((function() {
                     var e = this;
                     try {
                         !function() {
                             var n = a()(e);
-                          	console.log(121212, n);
                             if (0 == n.find(t.settings.selectors.collectionVariantSelector).length)
                                 throw "The variant selector cannot be found";
                             var r = n.find(t.settings.selectors.collectionVariantSelector).val();

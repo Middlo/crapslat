@@ -58,6 +58,52 @@
       enable_product_lightbox: enable_product_lightbox,
       enable_zoom: enable_zoom
     %}
+  
+    <div class="description_container_desktop">
+      {% comment %} Sku {% endcomment %}
+
+      <div class="sku_wrap">
+        <p class="sku_title">SKU: </p>
+        <p class="sku">{{ product.variants.first.sku }}</p>
+      </div>
+
+      {% comment %} Description - bottom {% endcomment %}
+      {% if product_description_position == "bottom" %}
+        {% if product.description != blank %}
+          <div class="description content bottom has-padding-top">
+            {{ product.description | split: '<!-- split -->' | first }}
+          </div>
+        {% endif %}
+      {% endif %}
+      
+            {% if product.metafields.custom_fields["sizeandfit"] != blank %}
+        <div class="size_fit_container">
+          <button class="size_fit_collapsible">Size & Fit</button>
+              <div class="size_fit_content">
+                <p>{{ product.metafields.custom_fields["sizeandfit"] }}</p>
+              </div>
+        	</div>
+      {% endif %}
+
+    </div>
+
+    <script>
+    	var coll = document.getElementsByClassName("size_fit_collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight != "0px"){
+                 content.style.maxHeight = "0px";
+            } else {
+                 content.style.maxHeight = content.scrollHeight + "px";
+            }
+          });
+        }
+    </script>
+    
   </div>
 
   <div class="product__information
@@ -88,11 +134,6 @@
       <p class="vendor">
         <span class="vendor">{{ product.vendor | link_to_vendor }}</span>
       </p>
-    {% endif %}
-
-    {% comment %} Sku {% endcomment %}
-    {% if display_sku %}
-      <p class="sku">{{ selected_variant.sku }}</p>
     {% endif %}
 
     <div>
@@ -237,16 +278,40 @@
           collection_handles: collection_handles
         %}
       {% endunless %}
+	
     </div>
 
-    {% comment %} Description - bottom {% endcomment %}
-    {% if product_description_position == "bottom" %}
-      {% if product.description != blank %}
-        <div class="description content bottom has-padding-top">
-          {{ product.description | split: '<!-- split -->' | first }}
-        </div>
+  	<div class="payment_plan_container">
+      
+	</div>
+    <div class="payment_plan_container_clear">
+      
+	</div>
+    
+        <div class="description_container_mobile">
+      {% comment %} Sku {% endcomment %}
+
+      <div class="sku_wrap">
+        <p class="sku_title">SKU: </p>
+        <p class="sku">{{ product.variants.first.sku }}</p>
+      </div>
+
+      {% comment %} Description - bottom {% endcomment %}
+      {% if product_description_position == "bottom" %}
+        {% if product.description != blank %}
+          <div class="description content bottom has-padding-top">
+            {{ product.description | split: '<!-- split -->' | first }}
+          </div>
+        {% endif %}
       {% endif %}
-    {% endif %}
+      
+      <div class="size_fit_container">
+        <button class="size_fit_collapsible">Size & Fit</button>
+        <div class="size_fit_content">
+          <p>This style fits small to size, therefore we advise you to take half a size up from your regular size. If you are usually in-between sizes, we recommend you to take a full size up.</p>
+        </div>
+      </div>
+    </div>
 
     {% comment %} Collections, type, tags {% endcomment %}
     {% if display_collections or display_tags or display_type %}

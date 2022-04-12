@@ -1,0 +1,50 @@
+<div class="custom-fields-section">
+  
+    {% if resource_type == "products" %}
+    <div class="custom-fields-section__products">
+      {% for block in blocks %}
+      {% if block.type contains "cf_" %}
+      <div class="custom-fields-section__item custom-fields-section__item--{{ block.type }} custom-fields-section__item--{{ block.type }}--{{ block.settings.key }}" {{ block.shopify_attributes }}>
+        {% case block.settings.key %}
+        
+          {% when "brand" %}
+            {% render "custom_fields.products.brand" %}
+        
+          {% when "category" %}
+            {% render "custom_fields.products.category" %}
+        
+          {% when "colorway" %}
+            {% render "custom_fields.products.colorway" %}
+        
+          {% when "designer" %}
+            {% render "custom_fields.products.designer" %}
+        
+          {% when "main_color" %}
+            {% render "custom_fields.products.main_color" %}
+        
+          {% when "nickname" %}
+            {% render "custom_fields.products.nickname" %}
+        
+          {% when "release_date" %}
+            {% render "custom_fields.products.release_date" %}
+        
+          {% when "silhouette" %}
+            {% render "custom_fields.products.silhouette" %}
+        
+          {% when "sizeandfit" %}
+            {% render "custom_fields.products.sizeandfit" %}
+        
+          {% when "technology" %}
+            {% render "custom_fields.products.technology" %}
+        
+          {% when "upper_material" %}
+            {% render "custom_fields.products.upper_material" %}
+        
+        {% endcase %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  
+</div>

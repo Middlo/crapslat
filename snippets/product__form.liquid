@@ -210,7 +210,7 @@
               {{ selected_variant.inventory_quantity }} {{ items_left_text }}
             {% endif %}
           {% endif %}
-        </p>
+  		</p>
       {% endif %}
 
       <div class="purchase-details {% if settings.display_product_quantity %}has-quantity-box{% endif %}">
@@ -221,7 +221,9 @@
         {% endif %}
         {% comment %} Error message for add to cart action {% endcomment %}
         <div class="cart-warning"></div>
-        <div class="purchase-details__buttons purchase-details__spb--{{ show_payment_button }}">
+        
+      </div>
+  <div class="purchase-details__buttons purchase-details__spb--{{ show_payment_button }}">
           {% if settings.cart_action == 'reload_page' %}
             <input type="hidden" name="return_to" value="back" />
           {% elsif settings.cart_action == 'redirect_cart' %}
@@ -229,34 +231,46 @@
           {% endif %}
 
           {% capture add_to_cart_label %}{% if collection_handles contains 'pre-order' %}{{ 'collections.general.pre_order' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endif %}{% endcapture %}
-          <button type="{% if settings.cart_action == 'mini_cart' or settings.cart_action == 'drawer' %}button{% else %}submit{% endif %}" name="add" class="button {% if settings.cart_action == 'mini_cart' or settings.cart_action == 'drawer' %} ajax-submit {% endif %}action_button button--add-to-cart {% if show_payment_button %} action_button--secondary {% endif %}" data-label={{ add_to_cart_label | json }} data-add-to-cart-trigger>
-            {% if  settings.button_cart_icon != blank and settings.button_cart_icon_position == 'left' %}
-              {%
-                render 'icon',
-                name: settings.button_cart_icon,
-                icon_class: 'icon--cart'
-              %}
-            {% endif %}
+          
+          <a 
+             	  id="bg_slider"
+                  type="{% if settings.cart_action == 'mini_cart' or settings.cart_action == 'drawer' %}button{% else %}submit{% endif %}"
+                  name="add" 
+                  class="button {% if settings.cart_action == 'mini_cart' or settings.cart_action == 'drawer' %} ajax-submit {% endif %}action_button button--add-to-cart {% if show_payment_button %} action_button--secondary {% endif %}" 
+                  data-label={{ add_to_cart_label | json }} data-add-to-cart-trigger>
+         
+            
+
             <span class="text">{{ add_to_cart_label }}</span>
-            {% if  settings.button_cart_icon != blank and settings.button_cart_icon_position == 'right' %}
-              {%
-                render 'icon',
-                name: settings.button_cart_icon,
-                icon_class: 'icon--cart icon--right'
-              %}
-            {% endif %}
-            <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32" class="checkmark">
-              <path fill="none" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
-            </svg>
-          </button>
-          {% if show_payment_button %}
-            {{ form | payment_button }}
-          {% endif %}
+          </a>
+          <a id="Buy-Now-Button">
+
+            <span class="text">BUY IT NOW</span>
+          </a>	
         </div>
-      </div>
     {% endif %}
   {% endform %}
-
+    <script>
+      jQuery("#Buy-Now-Button").click(function(){
+        let formObject = jQuery("#product_form_{{product.id}}").serializeArray().reduce(function(obj, item) {
+          obj[item.name] = item.value;
+          return obj;
+        }, {});
+        if(formObject.id){
+          window.location='https://mckickz.club/cart/'+formObject.id+':'+formObject.quantity+'?checkout'
+        }
+        })
+    </script>
+    <script>
+      jQuery("#product_form_{{product.id}}").click(function(){
+        let formObject = jQuery("#product_form_{{product.id}}").serializeArray().reduce(function(obj, item) {
+          obj[item.name] = item.value;
+          return obj;
+        }, {});
+      	console.log(formObject)
+       })
+    </script>
+  
   <div class="surface-pick-up surface-pick-up--loading" data-surface-pick-up></div>
   <div class="surface-pick-up__modal" data-surface-pick-up-modal></div>
 </div>

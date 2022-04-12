@@ -7,7 +7,7 @@
 {%- assign files_url  = 'product-1.png' | file_img_url: '50x' | split: 'product-1_50x.png' -%}
 {%- assign primary_locale = 'null' -%}
 {%- for locale in shop.published_locales -%}{%- if locale.primary -%}{%- assign primary_locale = locale.iso_code | json -%}{%- endif -%}{%- endfor -%}
-<style>.spf-filter-loading #gf-products > *:not(.spf-product--skeleton){visibility: hidden;}</style>
+<style>.spf-filter-loading #gf-products > *:not(.spf-product--skeleton){visibility: hidden; opacity: 0}</style>
 <script>
   document.getElementsByTagName('html')[0].classList.add('spf-filter-loading');
   window.addEventListener("globoFilterRenderCompleted",function(e){document.getElementsByTagName('html')[0].classList.remove('spf-filter-loading')})
@@ -40,6 +40,7 @@
       cur_currency: {{cart.currency.iso_code | json}},
       cur_locale: {{request.locale.iso_code | json}},
       locale: {{primary_locale}},
+      country_code: {{shop.address.country_code | json}},
       product_image: {width: 360, height: 360},
       no_image_url: "https://cdn.shopify.com/s/images/themes/product-1.png",
       themeStoreId: 0,
@@ -53,6 +54,7 @@
       page: {{request.page_type | json}},
       layout: "app"
     },
+    taxes: null,
     special_countries: null,
     adjustments: null,
 
@@ -60,7 +62,7 @@
       id: null
     },
     filter: {
-      id: {"default":40355,"276360233130":40495,"273048895658":40496,"273006723242":40497,"277816148138":40497,"2":40628}[page_id] || {"default":40355,"276360233130":40495,"273048895658":40496,"273006723242":40497,"277816148138":40497,"2":40628}['default'] || 0,
+      id: {"default":40355,"276360233130":40495,"273048895658":40496,"273006723242":40497,"277816148138":40497,"2":40628,"273005117610":43480,"394161225963":43481}[page_id] || {"default":40355,"276360233130":40495,"273048895658":40496,"273006723242":40497,"277816148138":40497,"2":40628,"273005117610":43480,"394161225963":43481}['default'] || 0,
       layout: 2,
       showCount: 1,
       isLoadMore: 1,

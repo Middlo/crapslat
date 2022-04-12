@@ -56,7 +56,165 @@
     {% if section.settings.animation != "none" %}data-scroll-class="{{ section.settings.animation }}"{% endif %}
   >
     {% capture product_collections_markup %}
-      <div class="container">
+      <script>console.log({{ product.metafields.custom_fields.size | json }});</script>
+      <div class="container" id="carosel_con">
+{% if product.metafields.custom_fields.size > 0  %}
+<div class='demo-container'>
+      <div class='carousel'>
+        <input checked='checked' class='carousel__activator' id='carousel-slide-activator-1' name='carousel' type='radio'>
+        <input class='carousel__activator' id='carousel-slide-activator-2' name='carousel' type='radio'>
+        <input class='carousel__activator' id='carousel-slide-activator-3' name='carousel' type='radio'>
+        <div class='carousel__controls'>
+          <label class='carousel__control carousel__control--forward' for='carousel-slide-activator-2'>
+			<svg class="flickity-button-icon-carosel" viewBox="0 0 100 100"><path d="M95,48H9.83L41,16.86A2,2,0,0,0,38.14,14L3.59,48.58a1.79,1.79,0,0,0-.25.31,1.19,1.19,0,0,0-.09.15l-.1.2-.06.2a.84.84,0,0,0,0,.17,2,2,0,0,0,0,.78.84.84,0,0,0,0,.17l.06.2.1.2a1.19,1.19,0,0,0,.09.15,1.79,1.79,0,0,0,.25.31L38.14,86A2,2,0,0,0,41,86a2,2,0,0,0,0-2.83L9.83,52H95a2,2,0,0,0,0-4Z" class="arrow" transform="translate(100, 100) rotate(180) "></path></svg>
+          </label>
+        </div>
+        <div class='carousel__controls'>
+          <label class='carousel__control carousel__control--backward' for='carousel-slide-activator-1'>
+            <svg class="flickity-button-icon-carosel" viewBox="0 0 100 100">
+              <path d="M95,48H9.83L41,16.86A2,2,0,0,0,38.14,14L3.59,48.58a1.79,1.79,0,0,0-.25.31,1.19,1.19,0,0,0-.09.15l-.1.2-.06.2a.84.84,0,0,0,0,.17,2,2,0,0,0,0,.78.84.84,0,0,0,0,.17l.06.2.1.2a1.19,1.19,0,0,0,.09.15,1.79,1.79,0,0,0,.25.31L38.14,86A2,2,0,0,0,41,86a2,2,0,0,0,0-2.83L9.83,52H95a2,2,0,0,0,0-4Z" class="arrow"></path>
+            </svg>
+          </label>
+          <label class='carousel__control carousel__control--forward' for='carousel-slide-activator-3'>
+			<svg class="flickity-button-icon-carosel" viewBox="0 0 100 100"><path d="M95,48H9.83L41,16.86A2,2,0,0,0,38.14,14L3.59,48.58a1.79,1.79,0,0,0-.25.31,1.19,1.19,0,0,0-.09.15l-.1.2-.06.2a.84.84,0,0,0,0,.17,2,2,0,0,0,0,.78.84.84,0,0,0,0,.17l.06.2.1.2a1.19,1.19,0,0,0,.09.15,1.79,1.79,0,0,0,.25.31L38.14,86A2,2,0,0,0,41,86a2,2,0,0,0,0-2.83L9.83,52H95a2,2,0,0,0,0-4Z" class="arrow" transform="translate(100, 100) rotate(180) "></path>
+            </svg>
+          </label>
+        </div>
+        <div class='carousel__controls'>
+          <label class='carousel__control carousel__control--backward' for='carousel-slide-activator-2'>
+            <svg class="flickity-button-icon-carosel" viewBox="0 0 100 100">
+              <path d="M95,48H9.83L41,16.86A2,2,0,0,0,38.14,14L3.59,48.58a1.79,1.79,0,0,0-.25.31,1.19,1.19,0,0,0-.09.15l-.1.2-.06.2a.84.84,0,0,0,0,.17,2,2,0,0,0,0,.78.84.84,0,0,0,0,.17l.06.2.1.2a1.19,1.19,0,0,0,.09.15,1.79,1.79,0,0,0,.25.31L38.14,86A2,2,0,0,0,41,86a2,2,0,0,0,0-2.83L9.83,52H95a2,2,0,0,0,0-4Z" class="arrow"></path>
+            </svg>
+          </label>
+        </div>
+        <div class='carousel__screen'>
+          <div class='carousel__track'>
+            {% if product.metafields.custom_fields["release_date"] != blank %}
+                    <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">RELEASE DATE</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["release_date"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["main_color"] != blank %}
+                    <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">MAIN COLOR</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["main_color"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["colorway"] != blank %}
+                    <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">COLORWAY</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["colorway"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["silhouette"] != blank %}
+                    <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">SILHOUETTE</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["silhouette"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["technology"] != blank %}
+                    <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">TECHONOLOGY</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["technology"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["upper_material"] != blank %}
+                    <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">UPPER MATERIAL</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["upper_material"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["designer"] != blank %}
+                    <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">DESIGNER</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["designer"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["nickname"] != blank %}
+           <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+            <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">NICKNAME</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["nickname"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["category"] != blank %}
+            <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">CATEGORY</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["category"] }}
+            </div>
+          </div>
+                </div>
+          </div>
+        {% endif %}
+        {% if product.metafields.custom_fields["brand"] != blank %}
+          <div class='carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-4'>
+          <div class='demo-content'>
+          <div class="custom-field custom-field__brand custom-field__type--text">
+            <h3 class="custom-field--title">BRAND</h3>
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["brand"] }}
+            </div>
+          </div>
+        </div>
+  </div>
+{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+        {% endif %}
+        
         {% if product_recommendations_heading != blank %}
           {%
             render 'heading',

@@ -78,6 +78,7 @@
   </script>
   {% comment %}Inject theme-object end{% endcomment %}
 
+  <script src="{{ jquery.pick.js' | asset_url }}" defer="defer"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
   <script src="{{ 'vendors.js' | asset_url }}" defer></script>
@@ -158,6 +159,11 @@
   {% render 'bookthatapp-widgets' %}
 
 {% render 'laybuy', product: product %}
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous">
+</script>
 </head>
 
 {%- capture money_format_output -%}
@@ -329,10 +335,59 @@
   </script>
 {% include 'globo.filter.action' %}
 	{% render 'ps-announcement-popup' %}
-{% render 'ps-footer-payment-icons' %}
   {% render 'globo.preorder.script' %}
-</body>
+{% render 'ps-footer-payment-icons' %}
+{% include 'social-head-common' %}</body>
 </html>
 {% endcapture %}
 {% assign content = content | replace_first: '<!doctype', '!doctype' | split: ' <' %}
 {%- for html in content -%}{%- assign htmlblock = html | strip | prepend: ' <' -%}{{htmlblock | replace: ' </', '</'}}{%- endfor -%}
+
+
+<!-- Begin Shopify-Clearpay JavaScript Snippet (v1.0.12) -->
+{% if cart.currency.iso_code == shop.currency %}
+<script type="text/javascript">
+// Editable fields (remove "//" from the start of each line to activate):
+var clearpay_min = 0.04;  // As per your Clearpay contract.
+var clearpay_max = 1000.00;  // As per your Clearpay contract.
+
+var clearpay_product_selector = '.payment_plan_container_clear';  // The selector used to identify the price on the Product pages.
+var clearpay_product_css = {'margin': '15px 0', 'font-size': '12px'};  // The CSS styling of the Clearpay assets on the Product pages.
+// var clearpay_logo_theme = 'black';  // The Clearpay logo colour. Can be 'colour' (default), 'black' or 'white'.
+// var clearpay_modal_open_icon = true;	 // If enabled, an "ⓘ" icon is displayed next to the Clearpay logo in place of the "More info" text.
+
+// var clearpay_variable_price_fallback_selector = '.product-price-selector';  // The selector used to identify the price on the Product pages if the Clearpay assets are disappearing after page-load or price is incorrect when a variant is selected.
+// var clearpay_variable_price_fallback_method = "interval";  // Ensures the instalment price updates when the price changes. Can be "mutation" (default) or "interval".
+
+var clearpay_cart_integration_enabled = true;  // Enables/disables the Cart page display. Can be true (default) or false.
+var clearpay_cart_static_selector = '.cart__cost-summary';  // The selector used to identify the price on the Cart page.
+var clearpay_cart_static_css = {'margin': '15px 0 0', 'text-align': 'right'};  // The CSS styling of the Clearpay assets on the Cart page.
+// var clearpay_cart_static_logo_theme = 'black';  // The Clearpay logo colour. Can be 'colour' (default), 'black' or 'white'.
+
+// var clearpay_variable_subtotal_fallback_selector = '.cart-subtotal-selector';  // The selector used to identify the price on the Cart page if the Clearpay assets are disappearing after page-load.
+// var clearpay_variable_subtotal_fallback_method = "interval";  // Ensures the instalment price updates when the price changes. Can be "mutation" (default) or "interval".
+
+var clearpay_footer_logo_enabled = true;  // Enables/disables the footer payment icon. Can be true (default) or false.
+// var clearpay_footer_logo_container = '.payment-icons';  // The selector used to identify the payment icons in the footer.
+// var clearpay_footer_logo_format = 'logo';  // The Clearpay payment icon style. Can be 'icon' (default), 'stacked' or 'logo'.
+// var clearpay_footer_logo_theme = 'black';  // The Clearpay payment icon colour. Can be 'colour' (default), 'black' or 'white'.
+// var clearpay_footer_logo_background = 'transparent';  // The Clearpay payment icon border style. Can be 'border' (default) or 'transparent'.
+// var clearpay_footer_logo_css = {'width': 'auto', 'height': 'auto', 'vertical-align': 'baseline'};  // The CSS styling of the Clearpay payment icon in the footer.
+
+// Non-editable fields:
+var clearpay_shop_currency = {{ shop.currency | json }};
+var clearpay_cart_currency = {{ cart.currency.iso_code | json }};
+var clearpay_shop_money_format = {{ shop.money_format | json }};
+var clearpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+var clearpay_theme_name = {{ theme.name | json }};
+var clearpay_product = {{ product | json }};
+var clearpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+var clearpay_cart_total_price = {{ cart.total_price | json }};
+var clearpay_js_snippet_version = '1.0.12';  
+  
+</script>
+<script type="text/javascript" src="https://static.afterpay.com/shopify-clearpay-javascript.js"></script>
+{% else %}
+<!-- Clearpay disabled: {{ cart.currency.iso_code }} != {{ shop.currency }} -->
+{% endif %}
+<!-- End Shopify-Clearpay JavaScript Snippet (v1.0.12) -->

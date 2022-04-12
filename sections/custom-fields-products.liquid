@@ -1,0 +1,88 @@
+{% render "blocks.custom_fields" with resource_type: "products", blocks: section.blocks %}
+{% schema %}
+  {
+    "name": {
+        "en": "Custom Fields"
+    },
+    "settings": [
+        {
+            "type": "paragraph",
+            "content": "[View Documentation](https:\/\/custom-fields.docs.bonify.io\/)"
+        },
+        {
+            "type": "paragraph",
+            "content": "[Edit Custom Fields](https:\/\/customfields.bonify.io\/dashboard\/mckickz.myshopify.com\/products\/configure)"
+        }
+    ],
+    "templates": [
+        "product"
+    ],
+    "presets": [
+        {
+            "name": "Custom Fields",
+            "blocks": []
+        }
+    ],
+    "blocks": [
+        {
+            "type": "cf_f_text",
+            "name": {
+                "en": "Text"
+            },
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "key",
+                    "label": "Select a Field",
+                    "options": [
+                        {
+                            "value": "brand",
+                            "label": "BRAND"
+                        },
+                        {
+                            "value": "category",
+                            "label": "CATEGORY"
+                        },
+                        {
+                            "value": "designer",
+                            "label": "DESIGNER"
+                        },
+                        {
+                            "value": "nickname",
+                            "label": "NICKNAME"
+                        },
+                        {
+                            "value": "silhouette",
+                            "label": "SILHOUETTE"
+                        },
+                        {
+                            "value": "colorway",
+                            "label": "COLOURWAY"
+                        },
+                        {
+                            "value": "main_color",
+                            "label": "MAIN COLOUR"
+                        },
+                        {
+                            "value": "release_date",
+                            "label": "RELEASE DATE"
+                        },
+                        {
+                            "value": "sizeandfit",
+                            "label": "Size & Fit"
+                        },
+                        {
+                            "value": "technology",
+                            "label": "TECHNOLOGY"
+                        },
+                        {
+                            "value": "upper_material",
+                            "label": "UPPER MATERIAL"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
